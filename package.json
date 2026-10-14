@@ -1,0 +1,21 @@
+{
+  "name": "our-love-site",
+  "version": "1.2.0",
+  "private": true,
+  "description": "our-love-site · Pan和Amy的小窝（恋爱计时 / 照片墙 / 情书 / 纪念日）",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.10.0",
+    "cookie-session": "^2.1.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.2",
+    "sharp": "^0.33.5"
+  }
+}

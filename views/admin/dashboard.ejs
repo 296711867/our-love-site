@@ -1,0 +1,366 @@
+<%- include('../partials/header', { title: '管理', active: 'admin' }) %>
+
+<section class="page-head">
+  <h1>🛠️ 小站管理</h1>
+  <div class="form-row">
+    <span class="stat">📷 <%= counts.photos %> 张照片</span>
+    <span class="stat">💌 <%= counts.messages %> 封情书</span>
+    <span class="stat">🎉 <%= counts.anniversaries %> 个纪念日</span>
+    <span class="grow"></span>
+    <form method="post" action="/admin/logout" class="inline"><button class="btn sm ghost" type="submit">退出登录</button></form>
+  </div>
+  <% if (flash) { %><div class="flash"><%= flash %></div><% } %>
+</section>
+
+<nav class="admin-tabs">
+  <a href="#photos" class="on">📷 照片墙</a>
+  <a href="#messages">💌 情书</a>
+  <a href="#anniv">🎉 纪念日</a>
+  <a href="#settings">⚙️ 设置</a>
+</nav>
+
+<!-- 照片 -->
+<section class="card" id="photos">
+  <h2 class="sec-title">📷 照片墙管理 <small class="sec-sub">上传与管理你们的回忆</small></h2>
+  <form class="upload-form" method="post" action="/admin/photos/upload" enctype="multipart/form-data">
+    <input class="up-input" id="ph-files" type="file" name="photos" accept="image/jpeg,image/png,image/webp,image/gif" multiple required data-name-el="ph-files-name">
+    <div class="dropzone" id="ph-dropzone">
+      <div class="dz-icon">🖼️</div>
+      <div class="dz-text" id="ph-files-name">点击选择照片，或把照片拖到这里 · 可一次多选</div>
+      <div class="dz-hint">JPG / PNG / WEBP · 单张 ≤ 25MB</div>
+    </div>
+    <div class="form-row">
+      <label class="grow">配文（可选，本批共用） <input type="text" name="caption" placeholder="如：国庆节假期" maxlength="100"></label>
+      <label>拍摄日期 <input type="date" name="taken_at" value="<%= todayStr %>"></label>
+      <button class="btn" type="submit">上传</button>
+    </div>
+    <small class="hint">上传后可在下方单独修改每张的配文和日期</small>
+  </form>
+
+  <div class="admin-list">
+    <% photos.forEach(function(p){ %>
+    <div class="admin-row">
+      <img class="row-thumb" src="/img/t/<%= p.id %>" alt="">
+      <form method="post" action="/admin/photos/<%= p.id %>" class="row-form">
+        <input type="text" name="caption" value="<%= p.caption %>" placeholder="配一句话…" maxlength="100">
+        <input type="date" name="taken_at" value="<%= p.taken_at %>">
+        <button class="btn sm" type="submit">保存</button>
+      </form>
+      <form method="post" action="/admin/photos/<%= p.id %>/delete" class="inline"
+            onsubmit="return confirm('删除这张照片？')">
+        <button class="btn sm danger" type="submit">删</button>
+      </form>
+    </div>
+    <% }) %>
+    <% if (!photos.length) { %><p class="hint">还没有照片</p><% } %>
+  </div>
+</section>
+
+<!-- 情书 -->
+<section class="card" id="messages">
+  <h2 class="sec-title">💌 情书管理 <small class="sec-sub">写下的每一句真心话</small> <a class="more" href="/messages">查看全部 ›</a></h2>
+
+  <form method="post" action="/messages" enctype="multipart/form-data" class="msg-form" style="margin-bottom:18px">
+    <input type="hidden" name="from" value="admin">
+    <div class="seg">
+      <label class="seg-item"><input type="radio" name="author" value="a" checked><span><%= s.name_a %></span></label>
+      <label class="seg-item"><input type="radio" name="author" value="b"><span><%= s.name_b %></span></label>
+    </div>
+    <textarea name="content" maxlength="2000" placeholder="提笔写一封情书…（也可以只附一张照片）"></textarea>
+    <div class="form-row" style="justify-content:space-between">
+      <span class="form-row" style="gap:8px">
+        <input class="up-input" id="letter-img" type="file" name="image" accept="image/jpeg,image/png,image/webp,image/gif" data-name-el="letter-img-name">
+        <label class="up-btn" for="letter-img">📎 附一张照片</label>
+        <span class="up-name" id="letter-img-name">未选择照片</span>
+      </span>
+      <button class="btn" type="submit">寄出 ✉️</button>
+    </div>
+  </form>
+
+  <div class="admin-list">
+    <% messages.forEach(function(m){ var who = m.author==='a'?s.name_a:s.name_b; %>
+    <div class="admin-row">
+      <span class="ava s"><%= who.charAt(0) %></span>
+      <div class="grow msg-snippet"><b><%= who %></b> · <%= fmtDateTime(m.created_at) %><br>
+        <small><%= m.content.slice(0, 60) %><%= m.content.length > 60 ? '…' : '' %></small>
+      </div>
+      <form method="post" action="/admin/messages/<%= m.id %>/delete" class="inline"
+            onsubmit="return confirm('删除这封情书？')">
+        <button class="btn sm danger" type="submit">删</button>
+      </form>
+    </div>
+    <% }) %>
+    <% if (!messages.length) { %><p class="hint">还没有情书，在上面写下第一封吧</p><% } %>
+  </div>
+</section>
+
+<!-- 纪念日 -->
+<section class="card" id="anniv">
+  <h2 class="sec-title">🎉 纪念日管理 <small class="sec-sub">生日、节日、值得记住的日子</small></h2>
+  <form method="post" action="/admin/anniversaries" class="form-row wrap-f">
+    <input type="text" name="name" placeholder="名称（如：宝贝生日）" maxlength="50" required>
+    <input type="text" name="icon" placeholder="🎂" maxlength="4" value="💖">
+    <input type="date" name="date">
+    <label class="chk"><input type="checkbox" name="repeat_yearly" checked> 每年循环</label>
+    <button class="btn" type="submit">添加</button>
+  </form>
+  <div class="admin-list">
+    <% annivs.forEach(function(a){ %>
+    <div class="admin-row">
+      <span class="a-icon"><%= a.icon %></span>
+      <div class="grow"><b><%= a.name %></b> · <%= a.date || '（正在路上，日子没定）' %><% if (!a.repeat_yearly) { %><small>（仅一次）</small><% } %></div>
+      <form method="post" action="/admin/anniversaries/<%= a.id %>/delete" class="inline"
+            onsubmit="return confirm('删除这个纪念日？')">
+        <button class="btn sm danger" type="submit">删</button>
+      </form>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- 设置 -->
+<section class="card" id="settings">
+  <h2 class="sec-title">⚙️ 小站设置 <small class="sec-sub">站名、主题色、背景与头像</small></h2>
+  <form method="post" action="/admin/settings" enctype="multipart/form-data">
+    <div class="form-grid">
+      <label>小站名称 <input type="text" name="site_name" value="<%= s.site_name %>" maxlength="30"></label>
+      <label>顶部文案 <input type="text" name="slogan" value="<%= s.slogan %>" maxlength="60"></label>
+      <label>TA 的名字 <input type="text" name="name_a" value="<%= s.name_a %>" maxlength="20"></label>
+      <label>你的名字 <input type="text" name="name_b" value="<%= s.name_b %>" maxlength="20"></label>
+      <label>在一起的日子（日期 + 时刻）
+        <span class="date-time">
+          <input type="date" name="since_date" value="<%= s.since_date %>">
+          <input type="time" name="since_time" value="<%= s.since_time || '00:00' %>">
+        </span>
+      </label>
+      <label class="theme-label">
+        主题色（点击色卡立即生效，或自定义）
+        <span class="theme-applied" id="themeApplied">已应用 ✓</span>
+        <span class="swatch-row">
+          <% [['淡米色','#c8a27a'],['樱花粉','#e8b4b8'],['玫瑰粉','#ff6b95'],['抹茶绿','#a8c5b9'],['雾霾蓝','#9db5d2'],['薰衣草','#b3a5d8'],['陶土橘','#d8a48f'],['酒红色','#b85c6e']].forEach(function(t){ %>
+          <button type="button" class="swatch <%= s.theme_color.toLowerCase() === t[1] ? 'on' : '' %>"
+                  data-c="<%= t[1] %>" style="background:<%= t[1] %>" title="<%= t[0] %>"></button>
+          <% }) %>
+        </span>
+        <input type="color" id="themeColor" name="theme_color" value="<%= s.theme_color %>">
+      </label>
+      <label class="chk lock-chk">
+        <input type="checkbox" name="photo_lock" <%= s.photo_lock === '1' ? 'checked' : '' %>>
+        🔒 给照片墙上锁（看相册要先输密码）
+      </label>
+      <label class="chk lock-chk">
+        <input type="checkbox" name="message_lock" <%= s.message_lock === '1' ? 'checked' : '' %>>
+        🔒 给情书上锁（看情书要先输密码，密码与相册通用）
+      </label>
+    </div>
+    <div class="form-row wrap-f" style="flex-direction:column;align-items:flex-start;gap:10px">
+      <label style="flex-direction:column;display:flex;gap:6px;font-size:13px;color:var(--mut)">
+        ✨ 动效（即选即用；🎲 随机 = 每次打开页面随机换一种飘落）<span class="theme-applied" id="fxApplied">已应用 ✓</span>
+        <span class="seg">
+          <label class="seg-item"><input type="radio" name="fx_fall" value="random" <%= s.fx_fall === 'random' ? 'checked' : '' %>><span>🎲 随机</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="off" <%= s.fx_fall === 'off' ? 'checked' : '' %>><span>关闭</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="sakuraImg" <%= s.fx_fall === 'sakuraImg' ? 'checked' : '' %>><span>🌸 樱飞</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="sakura" <%= s.fx_fall === 'sakura' ? 'checked' : '' %>><span>🌸 樱花</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="ginkgo" <%= s.fx_fall === 'ginkgo' ? 'checked' : '' %>><span>🌿 银杏</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="petals" <%= s.fx_fall === 'petals' ? 'checked' : '' %>><span>🌸 花瓣</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="snow" <%= s.fx_fall === 'snow' ? 'checked' : '' %>><span>❄️ 雪花</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="summer" <%= s.fx_fall === 'summer' ? 'checked' : '' %>><span>☀️ 夏日雪</span></label>
+          <label class="seg-item"><input type="radio" name="fx_fall" value="rain" <%= s.fx_fall === 'rain' ? 'checked' : '' %>><span>🌧️ 雨</span></label>
+        </span>
+      </label>
+      <span class="form-row">
+        <label class="chk"><input type="checkbox" name="fx_sparkle" <%= s.fx_sparkle === '1' ? 'checked' : '' %>> 💗 点击飘爱心</label>
+        <label class="chk"><input type="checkbox" name="fx_trail" <%= s.fx_trail === '1' ? 'checked' : '' %>> 💗 爱心拖尾</label>
+      </span>
+    </div>
+    <div class="up-grid">
+      <div class="up-card">
+        <% if (s.hero_image) { %>
+        <img class="up-preview" src="/img/set/hero" alt="背景">
+        <% } else { %>
+        <div class="up-preview up-empty">🖼️</div>
+        <% } %>
+        <div class="up-body">
+          <span class="up-title">首页背景大图</span>
+          <input class="up-input" id="up-hero" type="file" name="hero_image" accept="image/jpeg,image/png,image/webp">
+          <label class="up-btn" for="up-hero"><%= s.hero_image ? '更换图片' : '上传图片' %></label>
+          <% if (s.hero_image) { %><label class="up-clear"><input type="checkbox" name="clear_hero_image"><span>清除现有</span></label><% } %>
+          <span class="up-name">未选择新文件</span>
+        </div>
+      </div>
+      <div class="up-card">
+        <% if (s.avatar_a) { %>
+        <img class="up-preview" src="/img/set/avatar_a" alt="头像A">
+        <% } else { %>
+        <div class="up-preview up-empty">🙂</div>
+        <% } %>
+        <div class="up-body">
+          <span class="up-title"><%= s.name_a %> 的头像</span>
+          <input class="up-input" id="up-ava" type="file" name="avatar_a" accept="image/jpeg,image/png,image/webp">
+          <label class="up-btn" for="up-ava"><%= s.avatar_a ? '更换头像' : '上传头像' %></label>
+          <% if (s.avatar_a) { %><label class="up-clear"><input type="checkbox" name="clear_avatar_a"><span>清除现有</span></label><% } %>
+          <span class="up-name">未选择新文件</span>
+        </div>
+      </div>
+      <div class="up-card">
+        <% if (s.avatar_b) { %>
+        <img class="up-preview" src="/img/set/avatar_b" alt="头像B">
+        <% } else { %>
+        <div class="up-preview up-empty">🙂</div>
+        <% } %>
+        <div class="up-body">
+          <span class="up-title"><%= s.name_b %> 的头像</span>
+          <input class="up-input" id="up-avb" type="file" name="avatar_b" accept="image/jpeg,image/png,image/webp">
+          <label class="up-btn" for="up-avb"><%= s.avatar_b ? '更换头像' : '上传头像' %></label>
+          <% if (s.avatar_b) { %><label class="up-clear"><input type="checkbox" name="clear_avatar_b"><span>清除现有</span></label><% } %>
+          <span class="up-name">未选择新文件</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-row"><button class="btn" type="submit">保存设置</button></div>
+  </form>
+
+  <h2 class="sec-title">🔑 修改密码</h2>
+  <form method="post" action="/admin/settings/passwords" class="form-grid">
+    <label>当前后台密码 <input type="password" name="old_password" required></label>
+    <label>新后台密码（不改就留空） <input type="password" name="new_admin_pass" minlength="4"></label>
+    <label>新私密密码（相册/情书通用，不改就留空） <input type="password" name="new_lock_pass" minlength="4"></label>
+    <div class="form-row"><button class="btn" type="submit">修改密码</button></div>
+  </form>
+</section>
+
+<script>
+  // 主题色卡：点击即时应用并同步到取色器
+  var colorInput = document.getElementById('themeColor');
+  var appliedTip = document.getElementById('themeApplied');
+  var applyTimer = null;
+  function markSwatch() {
+    document.querySelectorAll('.swatch').forEach(function (s) {
+      s.classList.toggle('on', s.dataset.c.toLowerCase() === colorInput.value.toLowerCase());
+    });
+  }
+  function applyTheme(color) {
+    fetch('/admin/theme', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ color: color })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.ok) return;
+      markSwatch();
+      appliedTip.classList.add('show');
+      clearTimeout(applyTimer);
+      applyTimer = setTimeout(function () { appliedTip.classList.remove('show'); }, 1600);
+    });
+  }
+  document.querySelectorAll('.swatch').forEach(function (s) {
+    s.addEventListener('click', function () {
+      colorInput.value = s.dataset.c;
+      applyTheme(s.dataset.c);
+    });
+  });
+  colorInput.addEventListener('input', markSwatch);
+  colorInput.addEventListener('change', function () { applyTheme(colorInput.value); });
+  markSwatch();
+
+  // 照片投放区：点击 / 拖拽均可
+  var dz = document.getElementById('ph-dropzone');
+  var phInp = document.getElementById('ph-files');
+  if (dz && phInp) {
+    dz.addEventListener('click', function () { phInp.click(); });
+    ['dragover', 'dragenter'].forEach(function (ev) {
+      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add('dragover'); });
+    });
+    ['dragleave', 'drop'].forEach(function (ev) {
+      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove('dragover'); });
+    });
+    dz.addEventListener('drop', function (e) {
+      if (e.dataTransfer && e.dataTransfer.files.length) {
+        phInp.files = e.dataTransfer.files;
+        phInp.dispatchEvent(new Event('change'));
+      }
+    });
+  }
+
+  // 分区导航：平滑滚动 + 高亮
+  var tabs = document.querySelectorAll('.admin-tabs a');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function (e) {
+      e.preventDefault();
+      tabs.forEach(function (x) { x.classList.remove('on'); });
+      t.classList.add('on');
+      var target = document.querySelector(t.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          tabs.forEach(function (t) { t.classList.toggle('on', t.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('section.card[id]').forEach(function (sec) { io.observe(sec); });
+  }
+
+  // 动效开关：变更立即静默保存（回主页即生效，无需“保存设置”）
+  var fxTip = document.getElementById('fxApplied');
+  var fxTimer = null;
+  function fxApplied() {
+    fxTip.classList.add('show');
+    clearTimeout(fxTimer);
+    fxTimer = setTimeout(function () { fxTip.classList.remove('show'); }, 1600);
+  }
+  function applyFx() {
+    var fall = document.querySelector('input[name="fx_fall"]:checked');
+    var body = new URLSearchParams();
+    body.set('fx_fall', fall ? fall.value : 'petals');
+    body.set('fx_sparkle', document.querySelector('input[name="fx_sparkle"]').checked ? 'on' : '');
+    body.set('fx_trail', document.querySelector('input[name="fx_trail"]').checked ? 'on' : '');
+    fetch('/admin/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString()
+    }).then(function () { fxApplied(); });
+  }
+  document.querySelectorAll('input[name="fx_fall"]').forEach(function (r) {
+    r.addEventListener('change', applyFx);
+  });
+  ['fx_sparkle', 'fx_trail'].forEach(function (n) {
+    var el = document.querySelector('input[name="' + n + '"]');
+    if (el) el.addEventListener('change', applyFx);
+  });
+
+  // 上传组件：选择后显示文件名（多选显示数量），设置页卡片另做即时预览
+  document.querySelectorAll('.up-input').forEach(function (inp) {
+    inp.addEventListener('change', function () {
+      var nameEl = inp.dataset.nameEl ? document.getElementById(inp.dataset.nameEl) : null;
+      if (!nameEl) {
+        var card = inp.closest('.up-card');
+        nameEl = card ? card.querySelector('.up-name') : null;
+      }
+      var label = '未选择新文件';
+      if (inp.files.length) {
+        label = inp.files.length > 1 ? ('已选 ' + inp.files.length + ' 个文件') : inp.files[0].name;
+        var card = inp.closest('.up-card');
+        var f = inp.files[0];
+        if (card && f.type.indexOf('image/') === 0 && typeof FileReader !== 'undefined') {
+          var prev = card.querySelector('.up-preview');
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            if (prev.tagName === 'IMG') { prev.src = e.target.result; }
+            else {
+              var img = document.createElement('img');
+              img.className = 'up-preview'; img.alt = '预览'; img.src = e.target.result;
+              prev.replaceWith(img);
+            }
+          };
+          reader.readAsDataURL(f);
+        }
+      }
+      if (nameEl) nameEl.textContent = label;
+    });
+  });
+</script>
+
+<%- include('../partials/footer') %>

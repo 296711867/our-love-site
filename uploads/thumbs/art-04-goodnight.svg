@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <!-- 手绘 · 说完晚安再去睡 -->
+  <rect width="800" height="1000" fill="#fdfaf3"/>
+  <rect x="54" y="54" width="692" height="892" rx="26" fill="none" stroke="#e6d8c2" stroke-width="3" stroke-dasharray="1 14" stroke-linecap="round"/>
+
+  <!-- 月亮（戴睡帽） -->
+  <g transform="translate(392 470)">
+    <path d="M 60 -176 A 178 178 0 1 0 60 176 A 138 138 0 1 1 60 -176 Z"
+          fill="#f6dcae" stroke="#c8a27a" stroke-width="8" stroke-linejoin="round"/>
+    <!-- 睡帽 -->
+    <path d="M -118 -112 C -80 -216 60 -244 128 -176 C 70 -190 -40 -176 -118 -112 Z"
+          fill="#9db5d2" stroke="#7f97bb" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M -126 -104 Q -4 -150 130 -168" fill="none" stroke="#7f97bb" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 128 -176 C 176 -200 214 -178 208 -150 C 204 -130 178 -126 166 -142" fill="none" stroke="#7f97bb" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="206" cy="-136" r="17" fill="#f6dcae" stroke="#c8a27a" stroke-width="7"/>
+    <!-- 闭眼与微笑 -->
+    <path d="M -92 -8 Q -68 12 -44 -8" fill="none" stroke="#8a7a64" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 20 -8 Q 44 12 68 -8" fill="none" stroke="#8a7a64" stroke-width="8" stroke-linecap="round"/>
+    <path d="M -26 40 Q -12 54 2 40" fill="none" stroke="#8a7a64" stroke-width="7" stroke-linecap="round"/>
+    <!-- 腮红 -->
+    <ellipse cx="-104" cy="34" rx="20" ry="11" fill="#e5989b" opacity=".55"/>
+    <ellipse cx="86" cy="34" rx="20" ry="11" fill="#e5989b" opacity=".55"/>
+    <!-- zzz -->
+    <g fill="none" stroke="#9db5d2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 96 116 L 132 116 L 96 144 L 132 144"/>
+      <path d="M 152 68 L 178 68 L 152 90 L 178 90"/>
+    </g>
+  </g>
+
+  <!-- 云朵 -->
+  <g transform="translate(392 830)">
+    <path d="M -150 36 Q -158 -6 -112 -12 Q -104 -52 -58 -42 Q -40 -76 0 -60 Q 44 -76 58 -40 Q 108 -48 112 -8 Q 150 0 142 32 Q 138 46 122 44 L -128 44 Q -146 44 -150 36 Z"
+          fill="#ffffff" stroke="#e6d8c2" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 星星 -->
+  <g fill="#e5c07b">
+    <path d="M 196 236 q 5 14 20 20 q -15 5 -20 20 q -5 -15 -20 -20 q 15 -6 20 -20 Z"/>
+    <path d="M 616 196 q 4 11 16 15 q -12 4 -16 15 q -4 -11 -16 -15 q 12 -4 16 -15 Z"/>
+    <path d="M 648 540 q 3 10 13 13 q -10 3 -13 13 q -3 -10 -13 -13 q 10 -3 13 -13 Z"/>
+    <path d="M 156 560 q 3 10 13 13 q -10 3 -13 13 q -3 -10 -13 -13 q 10 -3 13 -13 Z" fill="#e5989b"/>
+  </g>
+  <circle cx="268" cy="356" r="6" fill="#9db5d2"/>
+  <circle cx="560" cy="300" r="7" fill="#e5c07b"/>
+  <circle cx="600" cy="404" r="5" fill="#e5989b" opacity=".8"/>
+</svg>

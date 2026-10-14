@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <!-- 手绘 · 把心事气球放给你 -->
+  <rect width="800" height="1000" fill="#fffdf8"/>
+  <rect x="54" y="54" width="692" height="892" rx="26" fill="none" stroke="#e6d8c2" stroke-width="3" stroke-dasharray="1 14" stroke-linecap="round"/>
+
+  <!-- 气球牵线（汇到同一个蝴蝶结） -->
+  <g fill="none" stroke="#8a7a64" stroke-width="5" stroke-linecap="round">
+    <path d="M 268 500 C 260 620 320 690 386 742"/>
+    <path d="M 410 456 C 412 570 404 668 398 742"/>
+    <path d="M 548 512 C 560 616 496 692 412 742"/>
+  </g>
+  <!-- 底部蝴蝶结 -->
+  <g transform="translate(400 756) rotate(4)" stroke="#8a7a64" stroke-width="6" stroke-linejoin="round">
+    <path d="M 0 0 C -44 -22 -76 -14 -80 6 C -76 26 -44 30 0 10 Z" fill="#9db5d2"/>
+    <path d="M 0 0 C 44 -22 76 -14 80 6 C 76 26 44 30 0 10 Z" fill="#9db5d2"/>
+    <circle r="10" fill="#7f97bb"/>
+  </g>
+  <!-- 线尾 -->
+  <path d="M 400 776 C 396 816 408 848 398 884" fill="none" stroke="#8a7a64" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- 气球一：粉（大） -->
+  <g transform="translate(268 356)">
+    <path d="M 0 148 C -58 96 -178 50 -178 -54 C -178 -132 -118 -172 -66 -172 C -26 -172 -5 -148 0 -122 C 5 -148 26 -172 66 -172 C 118 -172 178 -132 178 -54 C 178 50 58 96 0 148 Z"
+          fill="#f2b8bd" stroke="#c97f84" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M -96 -104 C -122 -82 -128 -46 -118 -20" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+    <path d="M -10 152 L 10 152 L 0 168 Z" fill="#c97f84"/>
+  </g>
+  <!-- 气球二：奶油描线（中） -->
+  <g transform="translate(410 300) scale(.88)">
+    <path d="M 0 148 C -58 96 -178 50 -178 -54 C -178 -132 -118 -172 -66 -172 C -26 -172 -5 -148 0 -122 C 5 -148 26 -172 66 -172 C 118 -172 178 -132 178 -54 C 178 50 58 96 0 148 Z"
+          fill="#fff7ec" stroke="#c8a27a" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M -94 -100 C -118 -80 -124 -46 -114 -22" fill="none" stroke="#e6cdb2" stroke-width="11" stroke-linecap="round"/>
+    <path d="M -10 152 L 10 152 L 0 168 Z" fill="#c8a27a"/>
+  </g>
+  <!-- 气球三：蓝（小） -->
+  <g transform="translate(552 368) scale(.76)">
+    <path d="M 0 148 C -58 96 -178 50 -178 -54 C -178 -132 -118 -172 -66 -172 C -26 -172 -5 -148 0 -122 C 5 -148 26 -172 66 -172 C 118 -172 178 -132 178 -54 C 178 50 58 96 0 148 Z"
+          fill="#c3d2e6" stroke="#7f97bb" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M -92 -98 C -114 -78 -120 -46 -110 -24" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+    <path d="M -10 152 L 10 152 L 0 168 Z" fill="#7f97bb"/>
+  </g>
+
+  <!-- 星星泡泡 -->
+  <g fill="#e5989b">
+    <path d="M 168 592 q 3 10 13 13 q -10 3 -13 13 q -3 -10 -13 -13 q 10 -3 13 -13 Z"/>
+    <path d="M 640 560 q 4 11 15 15 q -11 4 -15 15 q -4 -11 -15 -15 q 11 -4 15 -15 Z"/>
+  </g>
+  <circle cx="152" cy="676" r="7" fill="#9db5d2" opacity=".8"/>
+  <circle cx="652" cy="668" r="6" fill="#c8a27a" opacity=".8"/>
+  <circle cx="212" cy="216" r="6" fill="#c8a27a" opacity=".7"/>
+  <circle cx="596" cy="196" r="7" fill="#e5989b" opacity=".7"/>
+</svg>

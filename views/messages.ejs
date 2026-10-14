@@ -1,0 +1,47 @@
+<%- include('partials/lg-head', { title: '情书' }) %>
+
+<div class="central">
+  <div class="title"><h1>有些话 只想说给彼此听</h1></div>
+
+  <div class="row central central-800">
+    <% if (!messages.length) { %>
+    <div class="card col-lg-12 col-md-12 col-sm-12 col-sm-x-12">
+      <div class="little_texts">
+        <div class="top-title">还没有情书，第一封由你来说 💘</div>
+      </div>
+    </div>
+    <% } %>
+    <% messages.forEach(function(m){
+         var who = m.author === 'a' ? s.name_a : s.name_b;
+         var ava = m.author === 'a' ? avaA : avaB; %>
+    <article class="card col-lg-12 col-md-12 col-sm-12 col-sm-x-12 letter-card animated fadeInUp delay-03s">
+      <div class="letter-head">
+        <div class="letter-meta">
+          <span class="letter-from">寄自 · <%= who %></span>
+          <span class="letter-date"><%= fmtDate(m.created_at.slice(0, 10)) %></span>
+        </div>
+        <div class="letter-stamp">
+          <img src="<%= ava %>" alt="<%= who %>">
+        </div>
+      </div>
+      <% if (m.content) { %><p class="letter-body"><%= m.content %></p><% } %>
+      <% if (m.image) { %>
+      <img class="lb-item letter-img" src="/img/mt/<%= m.id %>" data-src="/img/mo/<%= m.id %>" data-cap="<%= who %> 的随信照片" alt="" style="cursor:zoom-in">
+      <% } %>
+      <div class="letter-foot">
+        <span class="letter-heart">❤</span>
+        <% if (isAdmin) { %>
+        <form method="post" action="/admin/messages/<%= m.id %>/delete" class="inline"
+              onsubmit="return confirm('删除这封情书？')">
+          <button class="msg-del" type="submit" title="删除">✕</button>
+        </form>
+        <% } %>
+      </div>
+    </article>
+    <% }) %>
+  </div>
+</div>
+
+<% if (isAdmin) { %><a class="admin-float" href="/admin#messages">⚙️ 管理</a><% } %>
+
+<%- include('partials/lg-foot') %>

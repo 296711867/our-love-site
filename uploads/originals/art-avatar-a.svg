@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Pan · 小熊 -->
+  <rect width="400" height="400" fill="#fdf4e7"/>
+  <circle cx="200" cy="206" r="152" fill="none" stroke="#e6d8c2" stroke-width="4" stroke-dasharray="1 12" stroke-linecap="round"/>
+
+  <!-- 耳朵 -->
+  <g stroke="#c8a27a" stroke-width="9">
+    <circle cx="112" cy="104" r="42" fill="#f3e2cb"/>
+    <circle cx="288" cy="104" r="42" fill="#f3e2cb"/>
+  </g>
+  <circle cx="112" cy="104" r="20" fill="#e5989b"/>
+  <circle cx="288" cy="104" r="20" fill="#e5989b"/>
+
+  <!-- 头 -->
+  <path d="M 200 62 C 122 62 74 122 74 202 C 74 286 128 334 200 334 C 272 334 326 286 326 202 C 326 122 278 62 200 62 Z"
+        fill="#f3e2cb" stroke="#c8a27a" stroke-width="9"/>
+
+  <!-- 眉眼（笑弯眼） -->
+  <path d="M 128 178 Q 150 198 172 178" fill="none" stroke="#6b5d4a" stroke-width="9" stroke-linecap="round"/>
+  <path d="M 228 178 Q 250 198 272 178" fill="none" stroke="#6b5d4a" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- 口鼻 -->
+  <path d="M 200 208 C 176 208 164 226 172 244 C 180 260 194 268 200 268 C 206 268 220 260 228 244 C 236 226 224 208 200 208 Z"
+        fill="#fff7ea" stroke="#c8a988" stroke-width="5"/>
+  <path d="M 186 234 Q 200 222 214 234 Q 200 244 186 234 Z" fill="#6b5d4a"/>
+  <path d="M 200 244 Q 200 258 188 260 M 200 244 Q 200 258 212 260" fill="none" stroke="#6b5d4a" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- 腮红 -->
+  <ellipse cx="112" cy="236" rx="22" ry="12" fill="#e5989b" opacity=".6"/>
+  <ellipse cx="288" cy="236" rx="22" ry="12" fill="#e5989b" opacity=".6"/>
+
+  <!-- 头顶小呆毛与爱心 -->
+  <path d="M 200 62 C 196 46 206 34 222 32" fill="none" stroke="#c8a27a" stroke-width="8" stroke-linecap="round"/>
+  <path transform="translate(298 76) scale(.09)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z" fill="#e5989b"/>
+</svg>

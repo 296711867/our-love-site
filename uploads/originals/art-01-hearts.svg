@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <!-- 手绘 · 一箭倾心 -->
+  <rect width="800" height="1000" fill="#fffdf8"/>
+  <rect x="54" y="54" width="692" height="892" rx="26" fill="none" stroke="#e6d8c2" stroke-width="3" stroke-dasharray="1 14" stroke-linecap="round"/>
+
+  <!-- 贯心之箭（杆在心后，头尾露在外面） -->
+  <g stroke="#8a7a64" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M 175 806 L 636 172"/>
+  </g>
+  <!-- 箭羽 -->
+  <g stroke="#8a7a64" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M 175 806 L 143 780"/>
+    <path d="M 175 806 L 162 842"/>
+    <path d="M 175 806 L 208 800"/>
+  </g>
+
+  <!-- 左心（实心粉） -->
+  <g transform="translate(318 480) rotate(-9)">
+    <path d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"
+          fill="#e5989b" stroke="#c97f84" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M -104 -96 C -128 -74 -132 -40 -122 -16" fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" opacity=".65"/>
+  </g>
+  <!-- 右心（描线奶油） -->
+  <g transform="translate(486 470) rotate(10)">
+    <path d="M 0 118 C -47 71 -167 31 -167 -62 C -167 -130 -111 -164 -62 -164 C -25 -164 -4 -142 0 -118 C 4 -142 25 -164 62 -164 C 111 -164 167 -130 167 -62 C 167 31 47 71 0 118 Z"
+          fill="#fff7ec" stroke="#c8a27a" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M -94 -88 C -116 -68 -120 -37 -111 -15" fill="none" stroke="#e6cdb2" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <!-- 箭头（压在心上层） -->
+  <g stroke="#8a7a64" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M 636 172 L 594 184"/>
+    <path d="M 636 172 L 626 214"/>
+    <path d="M 636 172 L 668 204"/>
+  </g>
+
+  <!-- 星尘 -->
+  <g fill="#e5989b">
+    <path d="M 190 220 q 4 12 16 16 q -12 4 -16 16 q -4 -12 -16 -16 q 12 -4 16 -16 Z"/>
+    <path d="M 620 560 q 3 10 13 13 q -10 3 -13 13 q -3 -10 -13 -13 q 10 -3 13 -13 Z"/>
+  </g>
+  <g fill="none" stroke="#c8a27a" stroke-width="5" stroke-linecap="round">
+    <path d="M 596 700 q 3 9 12 12 q -9 3 -12 12 q -3 -9 -12 -12 q 9 -3 12 -12 Z" fill="#c8a27a"/>
+  </g>
+  <g fill="none" stroke="#9db5d2" stroke-width="5" stroke-linecap="round">
+    <path d="M 236 660 q 6 0 10 5"/>
+    <path d="M 664 386 q 6 -2 9 -8"/>
+  </g>
+  <circle cx="560" cy="252" r="7" fill="#9db5d2" opacity=".8"/>
+  <circle cx="252" cy="392" r="6" fill="#e5989b" opacity=".8"/>
+</svg>

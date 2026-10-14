@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    container_name: amy-pan-love-site
+    restart: unless-stopped
+    user: "1000:1000"
+    ports:
+      - "80:3000"
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./data:/app/data       # SQLite 数据库、密钥、初始密码
+      - ./uploads:/app/uploads # 照片原图 + 缩略图

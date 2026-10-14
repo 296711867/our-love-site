@@ -1,0 +1,26 @@
+/* 独立的灯箱样式（LikeGirl 风格页面也加载） */
+.lb {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(20, 12, 16, .93);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  animation: lbfadein .18s ease;
+}
+.lb[hidden] { display: none; }
+@keyframes lbfadein { from { opacity: 0; } }
+.lb img { max-width: 94vw; max-height: 80vh; border-radius: 8px; object-fit: contain; }
+.lb-cap { color: #fff; margin-top: 14px; text-align: center; font-size: 14.5px; padding: 0 20px; }
+.lb-cap small { display: block; color: rgba(255, 255, 255, .55); font-size: 12px; margin-top: 3px; }
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  border: 0; background: rgba(255, 255, 255, .14); color: #fff;
+  width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .3); }
+.lb-prev { left: 10px; }
+.lb-next { right: 10px; }
+.lb-close {
+  position: absolute; top: 14px; right: 14px;
+  border: 0; background: rgba(255, 255, 255, .14); color: #fff;
+  width: 40px; height: 40px; border-radius: 50%; font-size: 17px; cursor: pointer;
+}
+@media (max-width: 560px) { .lb-btn { top: auto; bottom: 18px; transform: none; } .lb-prev { left: 8vw; } .lb-next { right: 8vw; } }

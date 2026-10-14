@@ -1,0 +1,16 @@
+# 依赖
+node_modules/
+
+# 运行时数据（首次启动自动生成）
+data/session-secret
+data/site.db-shm
+data/site.db-wal
+data/初始密码.txt
+
+# 历史备份
+backups/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db

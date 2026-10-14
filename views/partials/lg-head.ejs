@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title><%= title %> · <%= s.site_name %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/likegirl/Style/css/index.css">
+  <link rel="stylesheet" href="/likegirl/Style/css/little.css">
+  <link rel="stylesheet" href="/likegirl/Style/css/loveImg.css">
+  <link rel="stylesheet" href="/likegirl/Style/css/list.css">
+  <link rel="stylesheet" href="/likegirl/Style/css/animate.min.css">
+  <link rel="stylesheet" href="/likegirl/Style/Font/font_list/iconfont.css">
+  <link rel="stylesheet" href="/css/lightbox.css">
+  <link rel="stylesheet" href="/fonts/lxgw-wenkai/lxgwwenkai-regular.css">
+  <link rel="stylesheet" href="/fonts/lxgw-wenkai/lxgwwenkai-bold.css">
+  <script src="/likegirl/Style/Font/font_leav/iconfont.js"></script>
+  <%
+    var fxModes = ['sakuraImg', 'petals', 'sakura', 'ginkgo', 'snow', 'summer', 'rain'];
+    var effFall = s.fx_fall === 'random' ? fxModes[Math.floor(Math.random() * fxModes.length)] : (s.fx_fall || 'off');
+  %>
+  <script>window.SITE_EFFECTS={fall:'<%= effFall %>',sparkle:<%= s.fx_sparkle === '1' %>,trail:<%= s.fx_trail === '1' %>};</script>
+  <script src="/js/effects.js" defer></script>
+  <style>
+    /* 主题色：后台「小站设置 → 主题色」一键换全站配色 */
+    :root {
+      --theme: <%= s.theme_color %>;
+      --theme-dark: <%= themeDark %>;
+      --theme-soft: <%= s.theme_color %>40;
+      --theme-faint: <%= s.theme_color %>14;
+    }
+    .bg-img {
+      background: url(<%= s.hero_image ? '/img/set/hero' : '/likegirl/Style/img/Cover.webp' %>) no-repeat center !important;
+      background-size: cover !important;
+    }
+    /* 竖屏时背景图定位到人物一侧，避免裁切后只剩天空 */
+    @media (max-width: 768px) {
+      .bg-img { background-position: 90% center !important; }
+    }
+    .alogo, .wenan { color: rgb(97 97 97); transition: all 0.2s linear; }
+    ::selection { background: #6f6f6fc7; color: #fff; }
+    /* 打字机光标 */
+    .type-cursor { animation: typeblink 1s step-end infinite; font-weight: 400; }
+    @keyframes typeblink { 50% { opacity: 0; } }
+    .type-loop { min-height: 1.5em; }
+    /* 站内补充：表单与徽标（配色跟随原版） */
+    /* 顶栏单行：站名 | 导航 | 文案 */
+    .header-wrap .header { justify-content: space-between; padding: 0 1.2rem; }
+    .lg-nav {
+      display: flex; justify-content: center; align-items: center;
+      gap: .25rem; flex: 1; min-width: 0; margin: 0 1rem;
+    }
+    .lg-nav a {
+      padding: .3rem 1.05rem; border-radius: 999px;
+      color: #959595; font-size: .95rem; text-decoration: none;
+      transition: all .2s linear; white-space: nowrap;
+    }
+    .lg-nav a.on { background: linear-gradient(270deg, var(--theme), var(--theme-dark)); color: #fff; }
+    @media (max-width: 768px) {
+      .letter-card { padding: 1.3rem 1.15rem 1.1rem; margin: 1rem 0; }
+      .header-wrap .header .word { display: none; }
+      .lg-nav { justify-content: flex-end; margin: 0; }
+      .lg-nav a { padding: .28rem .55rem; font-size: .9rem; }
+    }
+    .lg-page { padding-bottom: 3rem; }
+    .lg-btn {
+      display: inline-block; border: 0; cursor: pointer; font-family: inherit;
+      background: linear-gradient(270deg, var(--theme), var(--theme-dark));
+      color: #fff; font-size: 1.05rem; padding: 0.6rem 1.6rem; border-radius: 4px;
+      box-shadow: 0 4px 14px var(--theme-soft); letter-spacing: .2rem;
+    }
+    .lg-btn:active { transform: scale(.97); }
+    .lg-lock { max-width: 420px; margin: 3rem auto; text-align: center; }
+    .lg-lock input[type="password"] {
+      width: 100%; border: 1px solid #e4e4e4; border-radius: 4px; text-align: center;
+      padding: .7rem; font-size: 1rem; margin: .8rem 0 1rem; outline: none; letter-spacing: .2rem;
+    }
+    .lg-lock input[type="password"]:focus { border-color: var(--theme); }
+    .lg-lock .err { color: #d9534f; font-size: .9rem; margin-top: .6rem; }
+    .lg-lock .lock-icon { font-size: 2.6rem; }
+    .day-chip {
+      float: right; font-size: .85rem; color: var(--theme-dark);
+      border: 1px solid var(--theme-soft); background: var(--theme-faint);
+      padding: .1rem .7rem; border-radius: 999px; margin-top: .1rem;
+    }
+    .day-chip.today { background: linear-gradient(270deg, var(--theme), var(--theme-dark)); color: #fff; border-color: transparent; }
+    .msg-del { border: 0; background: none; color: #c5c5c5; cursor: pointer; font-size: .95rem; float: right; }
+    .msg-del:hover { color: var(--theme-dark); }
+    /* ---- 情书卡片：航空信封风 ---- */
+    .letter-card {
+      position: relative; overflow: hidden;
+      background: #fffdf6;
+      border: 1px solid #f0e7d8;
+      border-radius: 10px;
+      text-align: left;
+      padding: 1.9rem 2.1rem 1.5rem;
+      margin: 1.3rem 0;
+      box-shadow: 0 8px 26px rgba(150, 120, 80, .09);
+    }
+    /* 上下红蓝斜纹封边（经典航空信封） */
+    .letter-card::before,
+    .letter-card::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 7px; z-index: 1;
+      background: repeating-linear-gradient(45deg,
+        #e5989b 0 10px, #fff 10px 20px,
+        #9db5d2 20px 30px, #fff 30px 40px);
+    }
+    .letter-card::before { top: 0; }
+    .letter-card::after { bottom: 0; }
+    .letter-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: .8rem; margin: .1rem 0 1.15rem;
+    }
+    .letter-meta { display: flex; flex-direction: column; gap: .5rem; }
+    .letter-from { font-size: 1.06rem; font-weight: 700; color: #6b5d4a; letter-spacing: .05em; }
+    .letter-date {
+      align-self: flex-start; font-size: .8rem;
+      color: var(--theme-dark); background: var(--theme-faint);
+      border: 1.5px solid var(--theme-soft); border-radius: 6px;
+      padding: .12rem .6rem; transform: rotate(-2deg);
+    }
+    /* 邮票式头像框：锯齿边 + 微微倾斜 */
+    .letter-stamp {
+      flex: none; width: 3.8rem; padding: .22rem;
+      background: #fff; border: 1px dashed var(--theme-soft);
+      transform: rotate(4deg);
+      box-shadow: 2px 3px 8px rgba(120, 100, 70, .18);
+    }
+    .letter-stamp img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    /* 信纸正文：舒展行距 + 两端对齐 */
+    .letter-body {
+      font-family: "LXGW WenKai", "Kaiti SC", "KaiTi", "STKaiti", serif;
+      white-space: pre-wrap; word-break: break-word;
+      color: #5a5248; font-size: 1.02rem;
+      line-height: 2.05; text-align: justify;
+      letter-spacing: .02em;
+    }
+    .letter-img { max-width: 100%; border-radius: 6px; margin-top: .9rem; display: block; }
+    .letter-foot {
+      display: flex; align-items: center; justify-content: flex-end; gap: .4rem;
+      margin-top: 1rem; padding-top: .6rem; min-height: 1.2rem;
+      border-top: 1px dashed #eadfce;
+    }
+    .letter-foot .letter-heart { margin-right: auto; color: var(--theme); font-size: .9rem; }
+    /* ---- 拍立得照片卡：手账风 ---- */
+    .polaroid {
+      background: #fffdf8; border: 1px solid #f0e7d8; border-radius: 4px;
+      padding: 12px 12px 10px; margin: 1.2rem .4rem;
+      transform: rotate(var(--tilt, -1.2deg));
+      transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+      box-shadow: 0 10px 26px rgba(150, 120, 80, .14);
+      position: relative;
+    }
+    .polaroid:nth-child(2n) { --tilt: 1.2deg; }
+    .polaroid:hover, .polaroid:active {
+      transform: rotate(0deg) translateY(-6px);
+      box-shadow: 0 20px 44px rgba(150, 120, 80, .22);
+      background: #fffefb;
+    }
+    .polaroid .love_img { margin: 0; }
+    .polaroid .love_img a { display: block; overflow: hidden; border-radius: 2px; }
+    .polaroid .love_img img {
+      width: 100%; height: auto; aspect-ratio: 4 / 5;
+      object-fit: cover; box-shadow: none; margin: 0;
+      transition: transform .5s ease;
+    }
+    .polaroid:hover .love_img img { transform: none; }
+    .polaroid-tape {
+      position: absolute; top: -11px; left: 50%; z-index: 2;
+      width: 96px; height: 26px;
+      transform: translateX(-50%) rotate(-3deg);
+      background: var(--theme-soft);
+      border-left: 1px dashed rgba(255, 255, 255, .65);
+      border-right: 1px dashed rgba(255, 255, 255, .65);
+      box-shadow: 0 2px 6px rgba(120, 100, 70, .15);
+    }
+    .polaroid-caption { display: flex; flex-direction: column; gap: 3px; padding: 11px 4px 3px; }
+    .polaroid-caption .p-cap, .letter-from {
+      font-family: "LXGW WenKai", "Kaiti SC", "KaiTi", "STKaiti", "TW-Kai", serif;
+    }
+    .polaroid-caption .p-cap {
+      font-size: 1.18rem; color: #6b5d4a; line-height: 1.45;
+    }
+    .polaroid-caption .p-date { font-size: .75rem; color: #b9ab98; letter-spacing: .08em; }
+    .admin-float {
+      position: fixed; right: 1rem; bottom: 1rem; z-index: 90;
+      background: rgba(255,255,255,.9); border-radius: 999px; padding: .45rem 1rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.12); font-size: .85rem; text-decoration: none; color: #666;
+    }
+    /* 触屏点按后不残留深色（原版 :active 深底在灯箱场景下像坏了） */
+    .img_card { -webkit-tap-highlight-color: transparent; }
+    .img_card:active { background: #fafafa; }
+    /* 原版恋爱清单列表无圆点 */
+    .lovelist li { list-style-type: none; }
+  </style>
+</head>
+<body data-since="<%= s.since_date %>T<%= s.since_time || '00:00' %>">
+
+<!-- 头部导航条：站名 | 页面切换 | 文案 -->
+<div class="header-wrap">
+  <div class="header">
+    <div class="logo">
+      <h1><a class="alogo" href="/"><%= s.site_name %></a></h1>
+    </div>
+    <nav class="lg-nav">
+      <a href="/" class="<%= title === '首页' ? 'on' : '' %>">首页</a>
+      <a href="/messages" class="<%= title === '情书' || title === '情书已上锁' ? 'on' : '' %>">情书</a>
+      <a href="/photos" class="<%= (title === '照片墙' || title === '相册已上锁') ? 'on' : '' %>">照片墙</a>
+      <a href="/anniversaries" class="<%= title === '纪念日' ? 'on' : '' %>">纪念日</a>
+    </nav>
+    <div class="word">
+      <span class="wenan"><%= s.slogan %></span>
+    </div>
+  </div>
+</div>
+
+<!-- 头像内容 -->
+<div class="bg-wrap">
+  <div class="bg-img">
+    <div class="central central-800">
+      <div class="middle animated fadeInDown">
+        <div class="img-male">
+          <img src="<%= avaA %>" draggable="false">
+          <span><%= s.name_a %></span>
+        </div>
+        <div class="love-icon">
+          <img src="/likegirl/Style/img/like.svg" draggable="false">
+        </div>
+        <div class="img-female">
+          <img src="<%= avaB %>" draggable="false">
+          <span><%= s.name_b %></span>
+        </div>
+      </div>
+    </div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="lg-page">

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <!-- 手绘 · 暖色天空横幅 -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf8ef"/>
+      <stop offset=".55" stop-color="#faeede"/>
+      <stop offset="1" stop-color="#f6e2cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <!-- 右上太阳 -->
+  <g transform="translate(1288 208)">
+    <circle r="150" fill="#f6dcae" opacity=".28"/>
+    <circle r="102" fill="#f6dcae" opacity=".5"/>
+    <circle r="72" fill="#f3cd93" stroke="#c8a27a" stroke-width="6"/>
+    <g stroke="#c8a27a" stroke-width="6" stroke-linecap="round" opacity=".8">
+      <path d="M 0 -108 L 0 -136"/><path d="M 108 0 L 136 0"/><path d="M 0 108 L 0 136"/><path d="M -108 0 L -136 0"/>
+      <path d="M 76 -76 L 96 -96"/><path d="M 76 76 L 96 96"/><path d="M -76 76 L -96 96"/><path d="M -76 -76 L -96 -96"/>
+    </g>
+  </g>
+
+  <!-- 云朵 -->
+  <g fill="#ffffff" opacity=".9">
+    <path transform="translate(360 190) scale(1.25)" d="M -150 36 Q -158 -6 -112 -12 Q -104 -52 -58 -42 Q -40 -76 0 -60 Q 44 -76 58 -40 Q 108 -48 112 -8 Q 150 0 142 32 Q 138 46 122 44 L -128 44 Q -146 44 -150 36 Z"/>
+    <path transform="translate(900 120) scale(.85)" d="M -150 36 Q -158 -6 -112 -12 Q -104 -52 -58 -42 Q -40 -76 0 -60 Q 44 -76 58 -40 Q 108 -48 112 -8 Q 150 0 142 32 Q 138 46 122 44 L -128 44 Q -146 44 -150 36 Z" opacity=".8"/>
+    <path transform="translate(1310 520) scale(.7)" d="M -150 36 Q -158 -6 -112 -12 Q -104 -52 -58 -42 Q -40 -76 0 -60 Q 44 -76 58 -40 Q 108 -48 112 -8 Q 150 0 142 32 Q 138 46 122 44 L -128 44 Q -146 44 -150 36 Z" opacity=".7"/>
+  </g>
+
+  <!-- 飘着的爱心气球 -->
+  <g transform="translate(214 320) rotate(-8) scale(.42)">
+    <path d="M 0 148 C -58 96 -178 50 -178 -54 C -178 -132 -118 -172 -66 -172 C -26 -172 -5 -148 0 -122 C 5 -148 26 -172 66 -172 C 118 -172 178 -132 178 -54 C 178 50 58 96 0 148 Z"
+          fill="#f2b8bd" stroke="#c97f84" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M 400 200 C 380 320 420 420 400 540" fill="none" stroke="#8a7a64" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(1466 420) rotate(10) scale(.3)">
+    <path d="M 0 148 C -58 96 -178 50 -178 -54 C -178 -132 -118 -172 -66 -172 C -26 -172 -5 -148 0 -122 C 5 -148 26 -172 66 -172 C 118 -172 178 -132 178 -54 C 178 50 58 96 0 148 Z"
+          fill="#c3d2e6" stroke="#7f97bb" stroke-width="14" stroke-linejoin="round"/>
+    <path d="M 200 210 C 180 330 220 430 200 550" fill="none" stroke="#8a7a64" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <!-- 飞鸟 -->
+  <g fill="none" stroke="#b9a88e" stroke-width="6" stroke-linecap="round">
+    <path d="M 640 210 q 18 -20 36 0 q 18 -20 36 0"/>
+    <path d="M 736 258 q 13 -15 26 0 q 13 -15 26 0"/>
+    <path d="M 566 286 q 11 -12 22 0 q 11 -12 22 0"/>
+  </g>
+
+  <!-- 层叠远丘 -->
+  <path d="M 0 700 C 200 640 360 664 520 690 C 700 720 860 700 1020 668 C 1200 632 1420 650 1600 690 L 1600 900 L 0 900 Z" fill="#f2ddc4" opacity=".8"/>
+  <path d="M 0 780 C 240 730 420 768 620 792 C 820 816 1040 780 1240 752 C 1380 732 1500 744 1600 768 L 1600 900 L 0 900 Z" fill="#eacbb0"/>
+  <path d="M 0 850 C 260 812 520 838 800 856 C 1080 874 1340 840 1600 852 L 1600 900 L 0 900 Z" fill="#e2bd9f"/>
+
+  <!-- 前景草点 -->
+  <g fill="none" stroke="#d5a988" stroke-width="6" stroke-linecap="round">
+    <path d="M 120 876 q 6 -26 -4 -40 M 138 878 q 2 -20 -10 -30"/>
+    <path d="M 1480 884 q 6 -24 -2 -38 M 1498 886 q 0 -18 -12 -26"/>
+  </g>
+  <circle cx="320" cy="884" r="6" fill="#c8a27a" opacity=".5"/>
+  <circle cx="1280" cy="878" r="6" fill="#c8a27a" opacity=".5"/>
+</svg>

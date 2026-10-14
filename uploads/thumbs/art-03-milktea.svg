@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <!-- 手绘 · 第二杯半价的快乐 -->
+  <rect width="800" height="1000" fill="#fffdf8"/>
+  <rect x="54" y="54" width="692" height="892" rx="26" fill="none" stroke="#e6d8c2" stroke-width="3" stroke-dasharray="1 14" stroke-linecap="round"/>
+
+  <!-- 中间的小爱心（两杯之间） -->
+  <g transform="translate(400 300)">
+    <path transform="scale(.2)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"
+          fill="#e5989b" stroke="#c97f84" stroke-width="26" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 左杯（草莓粉） -->
+  <g transform="translate(252 560) rotate(-5)">
+    <rect x="-86" y="-196" width="172" height="34" rx="14" fill="#fff7ec" stroke="#c97f84" stroke-width="7"/>
+    <path d="M -86 -162 L 84 -162 L 66 132 Q 64 160 34 160 L -34 160 Q -64 160 -66 132 Z"
+          fill="#f6dfda" stroke="#c97f84" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M -78 -60 Q 0 -46 76 -60" fill="none" stroke="#c97f84" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+    <!-- 珍珠 -->
+    <g fill="#8a6a5c">
+      <circle cx="-42" cy="118" r="13"/><circle cx="-8" cy="132" r="13"/>
+      <circle cx="28" cy="116" r="13"/><circle cx="52" cy="138" r="11"/>
+      <circle cx="-34" cy="90" r="11"/><circle cx="6" cy="102" r="10"/>
+    </g>
+    <!-- 吸管 -->
+    <path d="M 26 -190 L 66 -330" stroke="#e5989b" stroke-width="20" stroke-linecap="round"/>
+  </g>
+
+  <!-- 右杯（奶咖棕） -->
+  <g transform="translate(548 574) rotate(5)">
+    <rect x="-86" y="-196" width="172" height="34" rx="14" fill="#fff7ec" stroke="#c8a27a" stroke-width="7"/>
+    <path d="M -86 -162 L 84 -162 L 66 132 Q 64 160 34 160 L -34 160 Q -64 160 -66 132 Z"
+          fill="#f3e6d2" stroke="#c8a27a" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M -78 -60 Q 0 -46 76 -60" fill="none" stroke="#c8a27a" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+    <!-- 珍珠 -->
+    <g fill="#7d5f4e">
+      <circle cx="-38" cy="120" r="13"/><circle cx="4" cy="132" r="13"/>
+      <circle cx="40" cy="114" r="13"/><circle cx="-52" cy="92" r="11"/>
+      <circle cx="12" cy="98" r="10"/><circle cx="56" cy="136" r="10"/>
+    </g>
+    <!-- 吸管 -->
+    <path d="M -26 -190 L -62 -330" stroke="#9db5d2" stroke-width="20" stroke-linecap="round"/>
+  </g>
+
+  <!-- 高光与泡泡 -->
+  <g fill="none" stroke="#9db5d2" stroke-width="5" stroke-linecap="round" opacity=".85">
+    <path d="M 320 210 q 10 -14 26 -12"/>
+    <path d="M 462 208 q 12 -10 24 -2"/>
+  </g>
+  <circle cx="208" cy="236" r="8" fill="#e5989b" opacity=".7"/>
+  <circle cx="600" cy="252" r="7" fill="#c8a27a" opacity=".8"/>
+  <circle cx="560" cy="200" r="5" fill="#9db5d2" opacity=".8"/>
+  <path d="M 154 460 q 4 12 16 16 q -12 4 -16 16 q -4 -12 -16 -16 q 12 -4 16 -16 Z" fill="#c8a27a" opacity=".8"/>
+  <path d="M 640 428 q 3 10 13 13 q -10 3 -13 13 q -3 -10 -13 -13 q 10 -3 13 -13 Z" fill="#e5989b" opacity=".85"/>
+</svg>

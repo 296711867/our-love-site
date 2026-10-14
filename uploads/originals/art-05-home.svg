@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <!-- 手绘 · 未来在图纸上了 -->
+  <rect width="800" height="1000" fill="#fffdf8"/>
+  <rect x="54" y="54" width="692" height="892" rx="26" fill="none" stroke="#e6d8c2" stroke-width="3" stroke-dasharray="1 14" stroke-linecap="round"/>
+
+  <!-- 太阳 -->
+  <g transform="translate(620 190)">
+    <circle r="44" fill="#f6dcae" stroke="#c8a27a" stroke-width="6"/>
+    <g stroke="#c8a27a" stroke-width="6" stroke-linecap="round">
+      <path d="M 0 -66 L 0 -86"/><path d="M 66 0 L 86 0"/><path d="M 0 66 L 0 86"/><path d="M -66 0 L -86 0"/>
+      <path d="M 47 -47 L 61 -61"/><path d="M 47 47 L 61 61"/><path d="M -47 47 L -61 61"/><path d="M -47 -47 L -61 -61"/>
+    </g>
+  </g>
+
+  <!-- 房子 -->
+  <g transform="translate(400 600)">
+    <!-- 烟囱（先画，屋顶压住） -->
+    <path d="M 128 -96 L 128 -196 L 172 -196 L 176 -76 Z" fill="#f0dcc4" stroke="#c8a27a" stroke-width="7" stroke-linejoin="round"/>
+    <!-- 屋顶 -->
+    <path d="M -208 -66 C -120 -150 -46 -186 0 -196 C 46 -186 120 -150 208 -66 L 186 -52 C 110 -122 48 -152 0 -162 C -48 -152 -110 -122 -186 -52 Z"
+          fill="#e5989b" stroke="#c97f84" stroke-width="7" stroke-linejoin="round"/>
+    <!-- 屋身 -->
+    <path d="M -168 -58 L 168 -58 L 168 158 Q 168 178 148 178 L -148 178 Q -168 178 -168 158 Z"
+          fill="#fff7ec" stroke="#c8a27a" stroke-width="7" stroke-linejoin="round"/>
+    <!-- 门 -->
+    <path d="M -34 178 L -34 66 Q -34 26 0 26 Q 34 26 34 66 L 34 178 Z" fill="#f0dcc4" stroke="#c8a27a" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="22" cy="108" r="6" fill="#8a7a64"/>
+    <!-- 圆窗 -->
+    <circle cx="-100" cy="20" r="34" fill="#fdf3e3" stroke="#9db5d2" stroke-width="6"/>
+    <path d="M -100 -14 L -100 54 M -134 20 L -66 20" stroke="#9db5d2" stroke-width="5" stroke-linecap="round"/>
+    <!-- 心形邮箱 -->
+    <g transform="translate(104 44) scale(.11)">
+      <path d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"
+            fill="#e5989b" stroke="#c97f84" stroke-width="40" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- 烟囱冒出的爱心烟 -->
+  <g fill="#e5989b">
+    <path transform="translate(508 330) scale(.09)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"/>
+    <path transform="translate(534 274) scale(.13)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"/>
+    <path transform="translate(576 214) scale(.17)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"/>
+  </g>
+
+  <!-- 门前小路与草丛 -->
+  <g fill="#c8a27a">
+    <circle cx="386" cy="828" r="7" opacity=".75"/>
+    <circle cx="402" cy="852" r="8" opacity=".6"/>
+    <circle cx="380" cy="878" r="7" opacity=".5"/>
+    <circle cx="410" cy="900" r="6" opacity=".4"/>
+  </g>
+  <g fill="none" stroke="#9db5d2" stroke-width="5" stroke-linecap="round">
+    <path d="M 168 796 q 4 -22 -6 -34 M 182 798 q 0 -16 -12 -24 M 196 796 q -2 -12 -12 -16"/>
+    <path d="M 616 798 q 2 -20 14 -28 M 632 798 q 4 -14 14 -18"/>
+  </g>
+  <!-- 远处飞鸟 -->
+  <g fill="none" stroke="#b9a88e" stroke-width="5" stroke-linecap="round">
+    <path d="M 190 250 q 12 -14 24 0 q 12 -14 24 0"/>
+    <path d="M 268 300 q 9 -11 18 0 q 9 -11 18 0"/>
+  </g>
+</svg>

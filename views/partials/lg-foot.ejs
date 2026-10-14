@@ -1,0 +1,30 @@
+</div>
+
+<div class="footer-warp">
+  <div class="footer">
+    <p>记录我们的每一天 ❤</p>
+    <p style="font-size:.75rem;color:#bbb">2026.10.11 by Pan</p>
+  </div>
+</div>
+
+<script src="/likegirl/Style/jquery/jquery.min.js"></script>
+<script src="/js/timer.js"></script>
+<script src="/js/lightbox.js"></script>
+<script src="/js/typewriter.js"></script>
+<script>
+  $(function () {
+    // 点击整卡跳转（同原版）
+    $('.card, .card-b').click(function () {
+      var link = $(this).find('a').get(0);
+      if (link) link.click();
+    });
+    // 滚动后头部文字加深（同原版）
+    window.onscroll = function () {
+      var c = (document.documentElement.scrollTop || document.body.scrollTop) > 500 ? '#333333' : 'rgb(97 97 97)';
+      $('.wenan').css('color', c);
+      $('.alogo').css('color', c);
+    };
+  });
+</script>
+</body>
+</html>

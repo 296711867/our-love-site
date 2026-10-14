@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <!-- 手绘 · 写给你的信都在路上 -->
+  <rect width="800" height="1000" fill="#fffdf8"/>
+  <rect x="54" y="54" width="692" height="892" rx="26" fill="none" stroke="#e6d8c2" stroke-width="3" stroke-dasharray="1 14" stroke-linecap="round"/>
+
+  <!-- 虚线航迹 -->
+  <path d="M 170 806 C 150 640 260 586 330 640 C 410 702 360 800 448 800 C 540 800 560 640 540 520 C 524 424 560 350 604 300"
+        fill="none" stroke="#c8a27a" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 22"/>
+
+  <!-- 航迹上的小爱心 -->
+  <g fill="#e5989b">
+    <path transform="translate(196 706) scale(.16)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"/>
+    <path transform="translate(448 756) scale(.13)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"/>
+    <path transform="translate(552 470) scale(.1)" d="M 0 130 C -52 78 -184 34 -184 -68 C -184 -143 -122 -180 -68 -180 C -27 -180 -5 -156 0 -130 C 5 -156 27 -180 68 -180 C 122 -180 184 -143 184 -68 C 184 34 52 78 0 130 Z"/>
+  </g>
+
+  <!-- 纸飞机 -->
+  <g transform="translate(596 262) rotate(-18)">
+    <!-- 下翼 -->
+    <path d="M 0 0 L 190 -46 L 36 26 Z" fill="#fff7ec" stroke="#c8a27a" stroke-width="7" stroke-linejoin="round"/>
+    <!-- 上翼 -->
+    <path d="M 0 0 L 190 -46 L 96 -96 Z" fill="#e5989b" stroke="#c97f84" stroke-width="7" stroke-linejoin="round"/>
+    <!-- 机身折线 -->
+    <path d="M 0 0 L 190 -46 L 122 22" fill="none" stroke="#c8a27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 出发的小信封 -->
+  <g transform="translate(150 836) rotate(-4)">
+    <rect x="-58" y="-40" width="116" height="80" rx="10" fill="#fff7ec" stroke="#9db5d2" stroke-width="6"/>
+    <path d="M -58 -30 C -30 -6 30 -6 58 -30" fill="none" stroke="#9db5d2" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- 星星与气流 -->
+  <g fill="#c8a27a" opacity=".85">
+    <path d="M 300 260 q 4 12 16 16 q -12 4 -16 16 q -4 -12 -16 -16 q 12 -4 16 -16 Z"/>
+    <path d="M 656 592 q 3 10 13 13 q -10 3 -13 13 q -3 -10 -13 -13 q 10 -3 13 -13 Z"/>
+  </g>
+  <g fill="none" stroke="#9db5d2" stroke-width="5" stroke-linecap="round" opacity=".8">
+    <path d="M 380 420 q 40 -8 78 4"/>
+    <path d="M 262 520 q 34 -6 64 3"/>
+    <path d="M 600 700 q 30 -6 58 3"/>
+  </g>
+  <circle cx="664" cy="336" r="7" fill="#e5989b" opacity=".8"/>
+  <circle cx="248" cy="336" r="6" fill="#9db5d2" opacity=".8"/>
+</svg>

@@ -1,0 +1,124 @@
+<%- include('partials/lg-head', { title: '纪念日' }) %>
+
+<div class="central">
+  <div class="title">
+    <h1 class="type-loop" data-lines="总有些惊奇的际遇 比方说当我遇见你|愿得一人心 白首不相离|往后余生 风雪是你 平淡是你|你是我平凡生活里的浪漫|想和你把每个日子都过成纪念日"><span class="type-text"></span><span class="type-cursor">▌</span></h1>
+  </div>
+
+  <!-- 纪念时钟 -->
+  <section class="clock-card">
+    <div class="clock-head">
+      <img class="clock-ava" src="<%= avaA %>" alt="">
+      <div class="clock-title">❤ 我们已经在一起</div>
+      <img class="clock-ava" src="<%= avaB %>" alt="">
+    </div>
+    <div class="clock-tiles">
+      <div class="tile"><b id="ck-d">--</b><span>天</span></div>
+      <div class="tile"><b id="ck-h">--</b><span>时</span></div>
+      <div class="tile"><b id="ck-m">--</b><span>分</span></div>
+      <div class="tile"><b id="ck-s">--</b><span>秒</span></div>
+    </div>
+    <div class="clock-sub">
+      自 <%= fmtDate(together.date) %> 起 · 在一起第 <%= Math.floor(together.totalDays / 365.25) + 1 %> 年 · 每年 7 月 7 日是周年纪念日
+    </div>
+  </section>
+
+  <!-- 接下来的纪念日 -->
+  <div class="upcoming-label">📅 接下来的纪念日</div>
+
+  <% var shown = 0; %>
+  <% list.forEach(function(a){ shown++; %>
+  <div class="anniv-row">
+    <div class="a-emoji"><%= a.icon %></div>
+    <div class="a-info">
+      <b><%= a.name %><% if (!a.repeat_yearly) { %> <i class="once">仅一次</i><% } %></b>
+      <small><% if (a.repeat_yearly) { %>每年 <%= Number(a.date.slice(5, 7)) %> 月 <%= Number(a.date.slice(8, 10)) %> 日<% } else { %><%= fmtDate(a.date) %><% } %></small>
+    </div>
+    <div class="a-count <%= a.days === 0 ? 'today' : (a.days <= 7 ? 'soon' : '') %>">
+      <% if (a.days === 0) { %><b>今天</b><span>就是这一天 🎉</span>
+      <% } else { %><b><%= a.days %></b><span>天后</span><% } %>
+    </div>
+  </div>
+  <% }) %>
+
+  <% pending.forEach(function(a){ %>
+  <div class="anniv-row pending">
+    <div class="a-emoji"><%= a.icon %></div>
+    <div class="a-info">
+      <b><%= a.name %></b>
+      <small>日子还没定，期待中</small>
+    </div>
+    <div class="a-count"><span class="pending-chip">🚗 正在路上</span></div>
+  </div>
+  <% }) %>
+
+  <% if (!shown && !pending.length) { %>
+  <div class="anniv-row"><div class="a-info"><b>还没有添加纪念日（生日、节日都可以去后台加）</b></div></div>
+  <% } %>
+</div>
+
+<style>
+  /* ---- 纪念时钟 ---- */
+  .clock-card {
+    background: #fff; border: 1px solid var(--theme-faint); border-radius: 18px;
+    padding: 1.3rem 1.2rem 1.1rem; margin-bottom: 1.6rem;
+    box-shadow: 0 10px 30px rgba(150, 120, 80, .1);
+    animation: rise .4s ease both;
+  }
+  .clock-head { display: flex; align-items: center; justify-content: center; gap: .9rem; margin-bottom: 1rem; }
+  .clock-ava {
+    width: 3rem; height: 3rem; border-radius: 50%; object-fit: cover;
+    border: 2px solid #fff; box-shadow: 0 3px 10px rgba(120, 100, 70, .2);
+  }
+  .clock-title { font-size: 1.1rem; font-weight: 700; color: #6b5d4a; letter-spacing: .05em; }
+  .clock-title .heart { color: var(--theme); animation: typeblink 1.2s step-end infinite; display: inline-block; margin: 0 .3rem; }
+  .clock-tiles { display: flex; justify-content: center; gap: .6rem; }
+  .tile {
+    flex: 1; max-width: 6.2rem;
+    background: var(--theme-faint); border: 1px solid var(--theme-soft);
+    border-radius: 14px; padding: .7rem .4rem .5rem; text-align: center;
+  }
+  .tile b {
+    display: block; font-size: 1.9rem; line-height: 1.15;
+    color: var(--theme-dark); font-variant-numeric: tabular-nums;
+    font-family: 'LXGW WenKai', serif;
+  }
+  .tile span { font-size: .74rem; color: var(--mut); letter-spacing: .15em; }
+  .clock-sub {
+    text-align: center; margin-top: .95rem;
+    font-size: .82rem; color: #b3aab6; letter-spacing: .04em;
+  }
+
+  /* ---- 纪念日列表 ---- */
+  .upcoming-label {
+    text-align: center; font-size: .82rem; color: #b3aab6;
+    letter-spacing: .3em; margin: 0 0 .7rem;
+  }
+  .anniv-row {
+    display: flex; align-items: center; gap: .95rem;
+    padding: .9rem .5rem; border-bottom: 1px dashed #eadfce;
+    transition: background .2s; border-radius: 10px;
+  }
+  .anniv-row:hover { background: var(--theme-faint); }
+  .anniv-row:last-child { border-bottom: 0; }
+  .a-emoji {
+    flex: none; width: 2.7rem; height: 2.7rem; border-radius: 50%;
+    background: var(--theme-faint); border: 1px solid var(--theme-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+  }
+  .a-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .28rem; }
+  .a-info b { font-size: 1.02rem; font-family: 'LXGW WenKai', "Kaiti SC", serif; }
+  .a-info .once { font-style: normal; font-size: .75rem; color: var(--mut); border: 1px solid var(--line); border-radius: 999px; padding: 0 .45rem; margin-left: .3rem; vertical-align: 1px; }
+  .a-info small { color: #b3aab6; font-size: .82rem; }
+  .a-count { flex: none; text-align: right; line-height: 1.15; }
+  .a-count b { display: block; font-size: 1.35rem; color: var(--theme-dark); font-variant-numeric: tabular-nums; }
+  .a-count span { font-size: .7rem; color: var(--mut); }
+  .a-count.today b, .a-count.today span { color: var(--theme-dark); }
+  .a-count.soon b { color: #c08a3e; }
+  .anniv-row.pending { opacity: .8; }
+  .pending-chip { font-size: .85rem; color: #959595; background: #f4f4f4; border-radius: 999px; padding: .2rem .8rem; }
+</style>
+
+<% if (isAdmin) { %><a class="admin-float" href="/admin#anniv">⚙️ 管理</a><% } %>
+
+<%- include('partials/lg-foot') %>

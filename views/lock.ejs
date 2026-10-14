@@ -1,0 +1,15 @@
+<%- include('partials/lg-head', { title: title }) %>
+
+<div class="lg-lock card animated fadeInUp">
+  <div class="lock-icon">🔒</div>
+  <div class="title" style="margin:0"><h1 style="font-size:1.3rem"><%= title %></h1></div>
+  <p style="color:#959595;font-size:.9rem;margin:.4rem 0 .2rem">这是我们的小秘密，输入密码才能看哦</p>
+  <% if (error) { %><p class="err"><%= error %></p><% } %>
+  <form method="post" action="/unlock">
+    <input type="hidden" name="next" value="<%= next || '/' %>">
+    <input type="password" name="password" placeholder="私密密码" autofocus required>
+    <button class="lg-btn" type="submit">解锁 🔓</button>
+  </form>
+</div>
+
+<%- include('partials/lg-foot') %>
