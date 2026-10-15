@@ -94,6 +94,17 @@ router.post('/photos/:id/delete', requireAdmin, (req, res) => {
 });
 
 // ---------- 情话管理 ----------
+router.post('/messages/:id/edit', requireAdmin, (req, res) => {
+  const m = db.prepare('SELECT * FROM messages WHERE id = ?').get(Number(req.params.id));
+  if (!m) return res.redirect('/messages');
+  const content = String(req.body.content || '').trim();
+  if (!content && !m.image) return res.redirect('/messages'); // 没图没字就别存空信
+  const author = req.body.author === 'b' ? 'b' : 'a';
+  db.prepare('UPDATE messages SET author = ?, content = ? WHERE id = ?')
+    .run(author, content.slice(0, 2000), m.id);
+  res.redirect('/messages');
+});
+
 router.post('/messages/:id/delete', requireAdmin, (req, res) => {
   const m = db.prepare('SELECT * FROM messages WHERE id = ?').get(Number(req.params.id));
   if (m) {

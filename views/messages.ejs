@@ -14,7 +14,8 @@
     <% messages.forEach(function(m){
          var who = m.author === 'a' ? s.name_a : s.name_b;
          var ava = m.author === 'a' ? avaA : avaB; %>
-    <article class="card col-lg-12 col-md-12 col-sm-12 col-sm-x-12 letter-card animated fadeInUp delay-03s">
+    <article class="card col-lg-12 col-md-12 col-sm-12 col-sm-x-12 letter-card animated fadeInUp delay-03s" id="letter-<%= m.id %>">
+      <div class="letter-view">
       <div class="letter-head">
         <div class="letter-meta">
           <span class="letter-from">寄自 · <%= who %></span>
@@ -31,17 +32,80 @@
       <div class="letter-foot">
         <span class="letter-heart">❤</span>
         <% if (isAdmin) { %>
+        <button class="msg-del msg-edit" type="button" title="编辑">✎</button>
         <form method="post" action="/admin/messages/<%= m.id %>/delete" class="inline"
               onsubmit="return confirm('删除这封情书？')">
           <button class="msg-del" type="submit" title="删除">✕</button>
         </form>
         <% } %>
       </div>
+      </div>
+      <% if (isAdmin) { %>
+      <form method="post" action="/admin/messages/<%= m.id %>/edit" class="letter-edit-form" hidden>
+        <div class="le-row">
+          <label class="le-author"><input type="radio" name="author" value="a" <%= m.author === 'a' ? 'checked' : '' %>><span><%= s.name_a %></span></label>
+          <label class="le-author"><input type="radio" name="author" value="b" <%= m.author === 'b' ? 'checked' : '' %>><span><%= s.name_b %></span></label>
+        </div>
+        <textarea name="content" rows="8" maxlength="2000" required placeholder="写下想说的话…（支持换行）"><%= m.content %></textarea>
+        <div class="le-actions">
+          <button class="lg-btn" type="submit">保存</button>
+          <button class="lg-btn le-cancel" type="button">取消</button>
+        </div>
+      </form>
+      <% } %>
     </article>
     <% }) %>
   </div>
 </div>
 
 <% if (isAdmin) { %><a class="admin-float" href="/admin#messages">⚙️ 管理</a><% } %>
+
+<style>
+  /* 情书编辑态（管理员） */
+  .letter-edit-form { padding: .4rem 0 .2rem; }
+  .letter-edit-form .le-row { display: flex; gap: .5rem; margin-bottom: .7rem; }
+  .le-author input { display: none; }
+  .le-author span {
+    display: inline-block; padding: .28rem 1.1rem; border-radius: 999px;
+    border: 1.5px solid #e4dccb; color: #8a7a64; font-size: .92rem; cursor: pointer;
+    transition: all .15s linear;
+  }
+  .le-author input:checked + span {
+    background: var(--theme-dark); color: #fff; font-weight: 700;
+    border-color: var(--theme-dark); box-shadow: 0 2px 8px var(--theme-soft);
+  }
+  .letter-edit-form textarea {
+    width: 100%; min-height: 10rem; resize: vertical;
+    border: 1px solid #e4dccb; border-radius: 8px; padding: .85rem;
+    font: inherit; color: #5a5248; line-height: 1.9; outline: none;
+    background: #fffef9;
+  }
+  .letter-edit-form textarea:focus { border-color: var(--theme); }
+  .letter-edit-form .le-actions { display: flex; gap: .6rem; margin-top: .8rem; }
+  .letter-edit-form .le-actions .lg-btn { font-size: .95rem; padding: .45rem 1.3rem; }
+  .letter-edit-form .le-cancel { background: none; box-shadow: none; color: #8a7a64; border: 1.5px solid #e4dccb; }
+</style>
+<script>
+  // ✎ 进入编辑 / 取消还原（保存后整页刷新见新内容）
+  document.addEventListener('click', function (e) {
+    var editBtn = e.target.closest('.msg-edit');
+    if (editBtn) {
+      var card = editBtn.closest('.letter-card');
+      card.querySelector('.letter-view').hidden = true;
+      var form = card.querySelector('.letter-edit-form');
+      form.hidden = false;
+      form.querySelector('textarea').focus();
+      return;
+    }
+    var cancel = e.target.closest('.le-cancel');
+    if (cancel) {
+      var f = cancel.closest('.letter-edit-form');
+      var c = cancel.closest('.letter-card');
+      f.reset();
+      f.hidden = true;
+      c.querySelector('.letter-view').hidden = false;
+    }
+  });
+</script>
 
 <%- include('partials/lg-foot') %>
