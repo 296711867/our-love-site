@@ -1,7 +1,7 @@
 <%- include('../partials/header', { title: '管理', active: 'admin' }) %>
 
 <section class="page-head">
-  <h1>🛠️ 小站管理</h1>
+  <h1><span class="sec-ico">🛠️</span> 小站管理</h1>
   <div class="form-row">
     <span class="stat">📷 <%= counts.photos %> 张照片</span>
     <span class="stat">💌 <%= counts.messages %> 封情书</span>
@@ -21,7 +21,7 @@
 
 <!-- 照片 -->
 <section class="card" id="photos">
-  <h2 class="sec-title">📷 照片墙管理 <small class="sec-sub">上传与管理你们的回忆</small></h2>
+  <h2 class="sec-title"><span class="sec-ico">📷</span> 照片墙管理 <small class="sec-sub">上传与管理你们的回忆</small></h2>
   <form class="upload-form" method="post" action="/admin/photos/upload" enctype="multipart/form-data">
     <input class="up-input" id="ph-files" type="file" name="photos" accept="image/jpeg,image/png,image/webp,image/gif" multiple required data-name-el="ph-files-name">
     <div class="dropzone" id="ph-dropzone">
@@ -58,7 +58,7 @@
 
 <!-- 情书 -->
 <section class="card" id="messages">
-  <h2 class="sec-title">💌 情书管理 <small class="sec-sub">写下的每一句真心话</small> <a class="more" href="/messages">查看全部 ›</a></h2>
+  <h2 class="sec-title"><span class="sec-ico">💌</span> 情书管理 <small class="sec-sub">写下的每一句真心话</small> <a class="more" href="/messages">查看全部 ›</a></h2>
 
   <form method="post" action="/messages" enctype="multipart/form-data" class="msg-form" style="margin-bottom:18px">
     <input type="hidden" name="from" value="admin">
@@ -96,7 +96,7 @@
 
 <!-- 纪念日 -->
 <section class="card" id="anniv">
-  <h2 class="sec-title">🎉 纪念日管理 <small class="sec-sub">生日、节日、值得记住的日子</small></h2>
+  <h2 class="sec-title"><span class="sec-ico">🎉</span> 纪念日管理 <small class="sec-sub">生日、节日、值得记住的日子</small></h2>
   <form method="post" action="/admin/anniversaries" class="form-row wrap-f">
     <input type="text" name="name" placeholder="名称（如：宝贝生日）" maxlength="50" required>
     <input type="text" name="icon" placeholder="🎂" maxlength="4" value="💖">
@@ -120,7 +120,7 @@
 
 <!-- 设置 -->
 <section class="card" id="settings">
-  <h2 class="sec-title">⚙️ 小站设置 <small class="sec-sub">站名、主题色、背景与头像</small></h2>
+  <h2 class="sec-title"><span class="sec-ico">⚙️</span> 小站设置 <small class="sec-sub">站名、主题色、背景与头像</small></h2>
   <form method="post" action="/admin/settings" enctype="multipart/form-data">
     <div class="form-grid">
       <label>小站名称 <input type="text" name="site_name" value="<%= s.site_name %>" maxlength="30"></label>
@@ -220,7 +220,7 @@
     <div class="form-row"><button class="btn" type="submit">保存设置</button></div>
   </form>
 
-  <h2 class="sec-title">🔑 修改密码</h2>
+  <h2 class="sec-title"><span class="sec-ico">🔑</span> 修改密码</h2>
   <form method="post" action="/admin/settings/passwords" class="form-grid">
     <label>当前后台密码 <input type="password" name="old_password" required></label>
     <label>新后台密码（不改就留空） <input type="password" name="new_admin_pass" minlength="4"></label>

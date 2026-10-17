@@ -1,13 +1,16 @@
 <%- include('../partials/header', { title: '登录', active: '' }) %>
 
 <section class="card lock-card">
-  <div class="lock-emoji">🔐</div>
+  <div class="lock-ico">🔐</div>
   <h1>小站后台</h1>
   <p>只有我们俩能进</p>
   <% if (error) { %><p class="err"><%= error %></p><% } %>
   <form method="post" action="/admin/login">
     <input type="hidden" name="next" value="<%= next %>">
-    <input type="password" name="password" placeholder="后台密码" autofocus required>
+    <div class="field">
+      <label for="admin-pass">后台密码</label>
+      <input id="admin-pass" type="password" name="password" placeholder="••••••" autofocus required>
+    </div>
     <button class="btn" type="submit">进入 💞</button>
   </form>
 </section>
